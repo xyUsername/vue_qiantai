@@ -36,8 +36,18 @@ Vue.use(Router)
     { name: 'shop', path: '/shop', component: shop, children: [ ...goods, ...order, ...Shopcart]}
   ]
 })
+//路由地址白名单
+let baidan = ['detail','list',]
+
 // 路由守卫 router的实例对象的一个方法;
 router.beforeEach((to, from, next) => {
+  //some方法会遍历数组里的每一项,只要有一项匹配条件,就返回true;
+  let isTrue = baidan.some(v=>v==to.name);
+  if(isTrue){
+      next();
+      return;
+  }
+
   //to表示要去到的页面,from表示从哪个页面开始的,next表示接下来的做法;
   //在vue原型上已经配置了$http和$api对象了;因为是js文件,不是组件,所以这里的this找不到;
   Vue.prototype.$http.get(Vue.prototype.$api.isLogin).then(res => {

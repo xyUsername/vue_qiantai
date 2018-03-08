@@ -3,7 +3,7 @@
         <div class="head-top">
             <div class="section">
                 <div class="left-box">
-                    <span>vue2.0项目前端</span>
+                    <span>许烨的vue2.0项目前端</span>
                 </div>
                 <div id="menu" class="right-box">
                     <div class="search-box">
@@ -97,6 +97,11 @@ $(function () {
 
 <style scoped lang="less">
     #header{
+        a,span{
+            color:red;
+            font-size: 16px;
+            font-weight: 600;
+        }
         width: 100%;
         .head-top{
             width: 100%;
@@ -118,6 +123,7 @@ $(function () {
                     }
                     .search-box{
                         float: left;
+                        margin-top: 3px;
                     }
                 }
             }

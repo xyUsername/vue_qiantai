@@ -105,8 +105,8 @@
                     <!--购物车底部-->
                     <div class="cart-foot clearfix">
                         <div class="right-box">
-                            <button class="button">继续购物</button>
-                            <button class="submit">立即结算</button>
+                            <button class="button" @click="$router.go(-1)">继续购物</button>
+                            <button class="submit" @click="toSite">立即结算</button>
                         </div>
                     </div>
 
@@ -145,6 +145,12 @@
             }
         },
         methods: {
+            //跳转页面
+            toSite(){
+                //先找到它被选中的项,在用map方法返回它的id;
+                let ids = this.goodsList.filter(v=>v.selected).map(v=>v.id);
+                this.$router.push({name:'site',params:{ids:ids.join(",")}});
+            },
             //删除商品
             delid(id){
                 //保留除了被删除id的其他数据;
@@ -158,7 +164,7 @@
            },
            getgoodsList(){
                let ids= Object.keys(this.$store.state.cart);
-               console.log(ids);
+            //    console.log(ids);
                 this.$http.get(this.$api.shopcartGoods + ids).then((res)=>{
                     if(res.data.status ==0){
                         // console.log(res.data.message);
